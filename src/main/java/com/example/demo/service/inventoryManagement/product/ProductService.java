@@ -84,4 +84,19 @@ public class ProductService {
         Product product = getProductById(id);
         productRepository.delete(product);
     }
+
+    /**
+     * Deducts the requested quantity from a product's stock.
+     * Called by OrderService during order placement.
+     * Throws if stock is insufficient.
+     */
+    public Product deductStock(Long productId, int quantity) {
+        Product product = getProductById(productId);
+        if (product.getProductQuantity() < quantity) {
+            throw new RuntimeException("Insufficient stock for '" + product.getProductName()
+                    + "' — available: " + product.getProductQuantity() + ", requested: " + quantity);
+        }
+        product.setProductQuantity(product.getProductQuantity() - quantity);
+        return productRepository.save(product);
+    }
 }

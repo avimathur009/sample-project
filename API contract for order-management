@@ -1,0 +1,55 @@
+  1. Create a user
+
+  curl -X POST http://localhost:8888/api/users \
+    -H "Content-Type: application/json" \
+    -d '{"name": "Alice"}'
+
+  ---
+  2. Add product to cart
+
+  curl -X POST http://localhost:8888/api/users/1/cart \
+    -H "Content-Type: application/json" \
+    -d '{"productId": 1, "quantity": 2}'
+  ▎ Replace 1 in the path with the id returned from step 1, and productId with an existing product ID from your inventory.
+
+  ---
+  3. Place order
+
+  curl -X POST http://localhost:8888/api/users/1/orders \
+    -H "Content-Type: application/json" \
+    -d '{
+      "warehouseId": 1,
+      "deliveryAddress": {
+        "street": "123 Main St",
+        "city": "New York",
+        "state": "NY",
+        "zipCode": "10001",
+        "country": "US"
+      },
+      "paymentType": "CASH"
+    }'
+  ▎ paymentType accepts "CASH" or "CREDIT_CARD". warehouseId must match an existing warehouse.
+
+  ---
+  4. View orders
+
+  All orders for a user:
+  curl http://localhost:8888/api/users/1/orders
+
+  Single order by ID:
+  curl http://localhost:8888/api/orders/1
+
+  ---
+  Bonus — other useful curls
+
+  Remove a product from cart:
+  curl -X DELETE http://localhost:8888/api/users/1/cart/1
+
+  Empty the cart:
+  curl -X DELETE http://localhost:8888/api/users/1/cart
+
+  All orders (admin view):
+  curl http://localhost:8888/api/orders
+
+  Check user profile:
+  curl http://localhost:8888/api/users/1/profile
