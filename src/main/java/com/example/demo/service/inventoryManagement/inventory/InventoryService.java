@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.inventoryManagement.inventory;
 
 import com.example.demo.dto.InventoryDto;
 import com.example.demo.entity.Inventory;

@@ -2,7 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.InventoryDto;
 import com.example.demo.entity.Inventory;
-import com.example.demo.service.InventoryService;
+import com.example.demo.service.inventoryManagement.inventory.InventoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
